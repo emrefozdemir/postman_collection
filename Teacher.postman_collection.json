@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "0a7518ee-31c3-422c-b9c2-5602476baa7f",
+		"name": "Teacher",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post teacher",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a890963-b22b-453c-a55b-e0cfa71303d1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"const jsonData=pm.response.json();",
+							"pm.test(\"First is Displayed\", function(){",
+							"pm.expect(jsonData.firstName).to.eql(\"Mr. Bilal\");",
+							"})",
+							"",
+							"//To set student id to Environemnt variable",
+							"var teacherID=pm.response.json().teacherId;",
+							"pm.environment.set(\"teacherID\", teacherID);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"firstName\": \"Mr. Bilal\",\r\n   \"lastName\": \"Mask\",\r\n   \"emailAddress\": \"jackma@gmail.com\",\r\n   \"joinDate\": \"01/01/2010\",\r\n   \"password\": \"test\",\r\n   \"phone\": \"7727453232\",\r\n   \"subject\": \"Into to Database\",\r\n   \"gender\": \"Male\",\r\n   \"department\": \"Computer\",\r\n   \"birthDate\": \"06/17/2012\",\r\n   \"salary\": 100000,\r\n   \"batch\": 10,\r\n   \"section\": \"AP Learning\",\r\n   \"premanentAddress\": \"2343 W. California ave, Chicago, IL, 60678\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/teacher/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teacher",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Examples",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n         \r\n            \"firstName\": \"Jennifer\",\r\n            \"lastName\": \"Aniston\",\r\n            \"batch\": 10,\r\n            \"contact\": {\r\n                \r\n                \"phone\": \"123-456-789\",\r\n                \"emailAddress\": \"google@gmail.com\"\r\n            },\r\n            \"company\": {\r\n               \r\n                \"companyName\": \"Google\",\r\n                \"title\": \"APllication\",\r\n                \"startDate\": \"01/12/2018\",\r\n                \"address\": {\r\n                    \r\n                    \"street\": \"ul Tolebi\",\r\n                    \"city\": \"Tashkent\",\r\n                    \"state\": \"IL\",\r\n                    \"zipCode\": 60015\r\n                }\r\n            }\r\n        }"
+				},
+				"url": {
+					"raw": "http://cybertekchicago.com/student/1512",
+					"protocol": "http",
+					"host": [
+						"cybertekchicago",
+						"com"
+					],
+					"path": [
+						"student",
+						"1512"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/teacher/{{teacherID}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a802eb5-6fde-4601-b580-8558690c2bfb",
+						"exec": [
+							"var schema=\r",
+							"{\r",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"teachers\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"teacherId\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"firstName\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"lastName\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"emailAddress\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"joinDate\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"password\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"phone\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"subject\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"gender\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"department\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"birthDate\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"salary\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"batch\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"section\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"premanentAddress\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"teacherId\",\r",
+							"            \"firstName\",\r",
+							"            \"lastName\",\r",
+							"            \"emailAddress\",\r",
+							"            \"joinDate\",\r",
+							"            \"password\",\r",
+							"            \"phone\",\r",
+							"            \"subject\",\r",
+							"            \"gender\",\r",
+							"            \"department\",\r",
+							"            \"birthDate\",\r",
+							"            \"salary\",\r",
+							"            \"batch\",\r",
+							"            \"section\",\r",
+							"            \"premanentAddress\"\r",
+							"          ]\r",
+							"        }\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"teachers\"\r",
+							"  ]\r",
+							"}\r",
+							";\r",
+							"var response=JSON.parse(responseBody);\r",
+							"tests[\"Schema is Valid\"]=tv4.validate(response, schema);\r",
+							"console.log(tv4.error);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/teacher/{{teacherID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teacher",
+						"{{teacherID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
